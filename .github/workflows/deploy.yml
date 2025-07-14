@@ -26,6 +26,10 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.EC2HOST }} << 'EOF'
             cd /home/ubuntu/personal-notes-app
+            git reset --hard
+            git pull origin main
+
+
             docker-compose down
             docker-compose up -d --build
           EOF
