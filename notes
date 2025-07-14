@@ -1,0 +1,42 @@
+sudo nano /etc/nginx/sites-available/notes.yogeshtech.xyz
+
+
+server {
+    listen 80;
+    server_name notes.yogeshtech.xyz; #  Replace it with your own domain 
+
+    root /var/www/html/Notes/client/dist; # Replace with the path to your build directory
+    index index.html;
+
+    location / {
+        try_files $uri /index.html;
+    }
+
+    error_log /var/log/nginx/notes.yogeshtech.xyz.log;
+    access_log /var/log/nginx/notes.yogeshtech.xyz.log;
+}
+
+
+
+sudo ln -s /etc/nginx/sites-available/notes.yogeshtech.xyz /etc/nginx/sites-enabled/
+
+sudo nano /etc/nginx/sites-available/notesbackend.yogeshtech.xyz
+
+server {
+    listen 80;
+    server_name notesbackend.yogeshtech.xyz;
+
+    location / {
+        proxy_pass http://localhost:5000;  # Assuming your Node.js app is running on port 3000
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    error_log /var/log/nginx/notesbackend.yogeshtech.xyz.log;
+    access_log /var/log/nginx/notesbackend.yogeshtech.xyz.log;
+}
+
+sudo ln -s /etc/nginx/sites-available/notesbackend.yogeshtech.xyz /etc/nginx/sites-enabled/
