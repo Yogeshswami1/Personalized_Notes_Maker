@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div style={{ maxWidth: "600px", margin: "auto", padding: "1rem" }}>
-      <h2>📝 Personall Noddtess ha bhai of Yossgeesh kumar</h2>
+      <h2>📝 Personall Noddtess ha bhai of Yossgeesh kumar is a bad boy</h2>
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Title"
