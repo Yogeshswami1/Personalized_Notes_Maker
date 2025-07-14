@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div style={{ maxWidth: "600px", margin: "auto", padding: "1rem" }}>
-      <h2>📝 Personal Notes</h2>
+      <h2>📝 Personal Notes of Yogesh</h2>
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Title"
