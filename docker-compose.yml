@@ -24,11 +24,10 @@ services:
     restart: always
 
   mongo:
-  image: mongo
-  restart: always
-  volumes:
-    - mongo-data:/data/db
-
+    image: mongo
+    restart: always
+    volumes:
+      - mongo-data:/data/db
 
 volumes:
   mongo-data:
