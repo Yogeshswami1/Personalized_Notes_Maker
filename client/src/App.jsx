@@ -25,9 +25,9 @@ function App() {
     setNotes(notes.filter((n) => n._id !== id));
   };
 
-  return (
+  return ( 
     <div style={{ maxWidth: "600px", margin: "auto", padding: "1rem" }}>
-      <h2>📝 Personall Noddtess ha bhaiiiiiiii of Yooossgeesh kumar is a bad boy</h2>
+      <h2>📝 Yogesh bhai k samne koi bol sktah kya</h2>
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Title"
