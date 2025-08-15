@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    environment {
+        GIT_CREDENTIALS_ID = 'github'
+    }
+
+    stages {
+        stage('Clone Repo') {
+            steps {
+                git credentialsId: "${GIT_CREDENTIALS_ID}", url: 'https://github.com/Yogeshswami1/Personalized_Notes_Maker.git', branch: 'main'
+            }
+        }
+
+        stage('Docker Compose Down (Clean up)') {
+            steps {
+                script {
+                    echo "🧹 Stopping any existing containers..."
+                    sh 'docker-compose down || true'
+                }
+            }
+        }
+
+        stage('Build Docker Images') {
+            steps {
+                script {
+                    echo "🐳 Building Docker images..."
+                    sh 'docker-compose build --no-cache'
+                }
+            }
+        }
+
+        stage('Deploy to AWS') {
+            steps {
+                script {
+                    echo "🚀 Deploying to AWS EC2..."
+                    sh 'docker-compose up -d'
+                }
+            }
+        }
+
+        stage('Verify Services') {
+            steps {
+                script {
+                    echo "🔍 Checking running containers..."
+                    sh 'docker ps'
+                }
+            }
+        }
+    }
+
+    post {
+        failure {
+            echo "❌ Build failed. Please check the logs."
+        }
+        success {
+            echo "✅ Deployment successful. All systems go!"
+        }
+    }
+}
