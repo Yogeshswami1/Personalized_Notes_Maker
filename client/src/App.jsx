@@ -27,7 +27,7 @@ function App() {
 
   return ( 
     <div style={{ maxWidth: "600px", margin: "auto", padding: "1rem" }}>
-      <h2>📝 Yogesh bhai k samne koi bol sktah kya  nhi koi nhi bol skta..</h2>
+      <h2>📝 Yogesh bhai k samne koi bol sktah kya  nhi koi nhi bol skta...</h2>
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Title"
